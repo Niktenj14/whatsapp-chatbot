@@ -19,15 +19,35 @@ def reply():
     responded = False
     words = incoming_msg.split('@')
     if "hello" in incoming_msg:
-        reply = "Hello! \nDo you want to set a reminder?"
+        reply = "Welcome to BMTC ticket bot"
+        reply = "Hello! I am your ticket-bot and I will assist you in purchasing bus tickets, bus passes and tracking live location of busses. Type your queries or choose one of the options below for me to assist you"
         message.body(reply)
         responded = True
-
-    if len(words) == 1 and "yes" in incoming_msg:
-        reminder_string = "Please provide date in the following format only.\n\n"\
-        "*Date @* _type the date_ "
+        
+        
+    if len(words) == 2 and "Bus tickets" in incoming_msg:
+        reminder_string = "Would you like to enter your bus stop or bus number"
         message.body(reminder_string)
         responded = True
+
+        if len(words)==2 and "Bus stop" in incoming_msg:
+            reminder_string = "Please enter the source stop name choose one of the following options or type your query"
+            message.body(reminder_string)
+            responded = True
+            
+            if len(words)==3 and "Type stop name" in incoming_msg:
+                reminder_string = "Please type your stop name"
+                message.body(reminder_string)
+                responded = True
+
+
+        elif len(words)==2 and "Bus Number" in incoming_msg:
+            reminder_string="Please enter your bus number"
+            message.body(reminder_string)
+            responded= True 
+
+
+
     if len(words) == 1 and "no" in incoming_msg:
         reply="Ok. Have a nice day!"
         message.body(reply)
